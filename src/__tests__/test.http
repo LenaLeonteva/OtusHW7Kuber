@@ -1,0 +1,13 @@
+GET http://127.0.0.1:3000/ping
+
+###
+POST http://127.0.0.1:3000/user
+Content-Type: application/json
+
+{
+  "username": "johndoe589",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "bestjohn@doe.com",
+  "phone": "+71002003040"
+}
