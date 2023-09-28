@@ -16,55 +16,65 @@ export class User extends Entity {
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'integer',
-  id: true,
-  format: 'int64',
-  minimum: -9223372036854776000,
-  maximum: 9223372036854776000,
-}})
+  @property({
+
+    id: true,
+    generated: true,
+    type: 'number'
+
+  })
   id?: number;
 
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'string',
-  maxLength: 256,
-}})
+  @property({
+
+    type: 'string',
+    maxLength: 256,
+
+  })
   username?: string;
 
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'string',
-}})
+  @property({
+
+    type: 'string',
+
+  })
   firstName?: string;
 
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'string',
-}})
+  @property({
+
+    type: 'string',
+
+  })
   lastName?: string;
 
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'string',
-  format: 'email',
-}})
+  @property({
+
+    type: 'string',
+    format: 'email',
+
+  })
   email?: string;
 
   /**
    *
    */
-  @property({jsonSchema: {
-  type: 'string',
-}})
+  @property({
+
+    type: 'string',
+
+  })
   phone?: string;
 
 }

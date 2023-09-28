@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS PUBLIC.USERS
+CREATE TABLE IF NOT EXISTS public.users
 (
     id integer NOT NULL,
     username text NOT NULL,
@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS PUBLIC.USERS
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS public.cache
+ALTER TABLE IF EXISTS public.users
 owner to user_admin;
 
-REVOKE ALL ON TABLE public.cache FROM user_admin_select;
-GRANT ALL ON TABLE public.cache TO user_admin;
+REVOKE ALL ON TABLE public.users FROM user_admin_select;
+GRANT ALL ON TABLE public.users TO user_admin;
+GRANT SELECT ON TABLE public.users FROM user_admin_select;

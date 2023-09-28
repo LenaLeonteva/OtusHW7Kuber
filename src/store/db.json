@@ -1,0 +1,12 @@
+{
+  "ids": {
+    "User": 6
+  },
+  "models": {
+    "User": {
+      "1": "{\"username\":\"johndoe589\",\"firstName\":\"Julie\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71004242424\",\"id\":1}",
+      "3": "{\"username\":\"johndoe580\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":3}",
+      "5": "{\"username\":\"johndo589\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":5}"
+    }
+  }
+}
