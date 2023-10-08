@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public.users
     lastName text NOT NULL,
     email text,
     phone text
-)
+);
 
 TABLESPACE pg_default;
 
