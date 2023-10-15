@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: users-configmap
 data:
-  DB_HOST: postgres
+  DB_HOST: postgres.default
   DB_PORT: "5432"
   DB_DATABASE: postgres

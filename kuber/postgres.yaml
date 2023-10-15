@@ -54,7 +54,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:9.6
+          image: bitnami/postgresql
           env:
             - name: POSTGRES_USER
               valueFrom:
