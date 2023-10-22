@@ -12,10 +12,10 @@ Content-Type: application/json
   "phone": "+71002003040"
 }
 ###
-GET http://172.26.239.206:80/ping
+GET http://10.106.20.255:80/ping
 
 ###
-POST http://172.26.239.206:80/user
+POST http://10.106.20.255:80/user
 Content-Type: application/json
 
 {
