@@ -41,9 +41,21 @@ POST http://172.26.239.206:80/user
 Content-Type: application/json
 
 {
-  "username": "johndoe589",
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "bestjohn@doe.com",
-  "phone": "+71002003040"
+  "username": "pups",
+  "firstName": "lyalya",
+  "lastName": "Mimi",
+  "email": "mimi@pups.com",
+  "phone": "+7100200300"
+}
+
+###
+POST http://10.106.20.255:80/user
+Content-Type: application/json
+
+{
+  "username": "cat",
+  "firstName": "hello",
+  "lastName": "kitty",
+  "email": "hello@pups.com",
+  "phone": "+7100200305"
 }
