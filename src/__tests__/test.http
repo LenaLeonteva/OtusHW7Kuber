@@ -1,3 +1,4 @@
+###
 GET http://127.0.0.1:3000/ping
 
 ###
@@ -5,17 +6,38 @@ POST http://127.0.0.1:3000/user
 Content-Type: application/json
 
 {
-  "username": "johndoe589",
+  "username": "johndoe5891",
   "firstName": "John",
   "lastName": "Doe",
   "email": "bestjohn@doe.com",
   "phone": "+71002003040"
 }
-###
-GET http://10.106.20.255:80/ping
 
 ###
-POST http://10.106.20.255:80/user
+GET http://127.0.0.1:3000/user/10
+
+###
+GET http://127.0.0.1:3000/user/5
+
+###
+PUT http://127.0.0.1:3000/user/100
+
+{
+  "username": "j5891",
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "bestjohn@doe.com",
+  "phone": "+71002003040"
+}
+
+###
+DELETE http://127.0.0.1:3000/user/5
+
+###
+GET http://172.26.239.206:80/ping
+
+###
+POST http://172.26.239.206:80/user
 Content-Type: application/json
 
 {

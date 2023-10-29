@@ -1,5 +1,6 @@
+import {inject} from '@loopback/core';
 import {repository} from '@loopback/repository';
-import {api, operation, param, requestBody} from '@loopback/rest';
+import {Response, RestBindings, api, operation, param, requestBody} from '@loopback/rest';
 import {User} from '../models/user.model';
 import {UserRepository} from '../repositories';
 
@@ -77,7 +78,8 @@ import {UserRepository} from '../repositories';
 })
 export class UserController {
   constructor(
-    @repository(UserRepository) private userRepo: UserRepository
+    @repository(UserRepository) private userRepo: UserRepository,
+    @inject(RestBindings.Http.RESPONSE) private response: Response
   ) { }
   /**
    * This can only be done by the logged in user.
@@ -152,17 +154,17 @@ export class UserController {
 
     const sameName = await this.userRepo.findOne(filter)
     if (sameName) {
-      return {
-        "statusCode": 404,
-        code: 'error',
-        message: 'Это имя пользователя уже занято'
-      }
+      return this.response.status(400).send(
+        {
+          statusCode: 400,
+          code: "error",
+          message: 'Это имя пользователя уже занято!',
+
+        })
     }
-
     const newUser = await this.userRepo.create(user);
-
     console.log('User ' + user.username + ' created. ID: ' + newUser.id);
-
+    return this.response.status(200).send();
   }
   /**
    * Returns a user based on a single ID, if the user does not have access to the
@@ -276,6 +278,7 @@ user
   }) userId: number) {
     const user = await this.userRepo.findById(userId)
     await this.userRepo.delete(user);
+    return this.response.status(200).send();
   }
   /**
    * Update user with User ID supplied
@@ -368,7 +371,7 @@ user
   }) newData: User) {
 
     await this.userRepo.updateById(userId, newData);
-
+    return this.response.status(200).send();
   }
 }
 
