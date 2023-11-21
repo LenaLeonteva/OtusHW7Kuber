@@ -3,7 +3,7 @@ info:
   description: |
     This is simple client API
   version: "1.0.0"
-  title: User Service
+  title: Users Service
   contact:
     email: schetinnikov@gmail.com
 servers:
@@ -29,7 +29,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              $ref: "#/components/schemas/Users"
             examples:
               sample-user:
                 summary: Example
@@ -61,7 +61,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/Users"
         default:
           description: unexpected error
           content:
@@ -85,13 +85,13 @@ paths:
     put:
       tags:
         - user
-      description: Update user with User ID supplied
+      description: Update user with Users ID supplied
       operationId: updateUser
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/User"
+              $ref: "#/components/schemas/Users"
             examples:
               sample-user:
                 summary: Example
@@ -113,7 +113,7 @@ paths:
 
 components:
   schemas:
-    User:
+    Users:
       type: object
       properties:
         id:
@@ -151,6 +151,6 @@ components:
           schema:
             type: array
             items:
-              $ref: "#/components/schemas/User"
+              $ref: "#/components/schemas/Users"
       description: List of user object
       required: true

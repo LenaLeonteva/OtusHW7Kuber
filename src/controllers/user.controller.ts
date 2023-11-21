@@ -14,7 +14,7 @@ import {UserRepository} from '../repositories';
 @api({
   components: {
     schemas: {
-      User: {
+      Users: {
         type: 'object',
         properties: {
           id: {
@@ -64,7 +64,7 @@ import {UserRepository} from '../repositories';
             schema: {
               type: 'array',
               items: {
-                $ref: '#/components/schemas/User',
+                $ref: '#/components/schemas/Users',
               },
             },
           },
@@ -102,7 +102,7 @@ export class UserController {
       content: {
         'application/json': {
           schema: {
-            $ref: '#/components/schemas/User',
+            $ref: '#/components/schemas/Users',
           },
           examples: {
             'sample-user': {
@@ -126,7 +126,7 @@ export class UserController {
     content: {
       'application/json': {
         schema: {
-          $ref: '#/components/schemas/User',
+          $ref: '#/components/schemas/Users',
         },
         examples: {
           'sample-user': {
@@ -185,7 +185,7 @@ user
         content: {
           'application/json': {
             schema: {
-              $ref: '#/components/schemas/User',
+              $ref: '#/components/schemas/Users',
             },
           },
         },
@@ -296,7 +296,7 @@ user
       content: {
         'application/json': {
           schema: {
-            $ref: '#/components/schemas/User',
+            $ref: '#/components/schemas/Users',
           },
           examples: {
             'sample-user': {
@@ -353,7 +353,7 @@ user
     content: {
       'application/json': {
         schema: {
-          $ref: '#/components/schemas/User',
+          $ref: '#/components/schemas/Users',
         },
         examples: {
           'sample-user': {

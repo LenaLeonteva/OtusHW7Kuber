@@ -1,10 +1,10 @@
 import {Entity, model, property} from '@loopback/repository';
 
 /**
- * The model class is generated from OpenAPI schema - User
- * User
+ * The model class is generated from OpenAPI schema - Users
+ * Users
  */
-@model({name: 'User'})
+@model({name: 'Users'})
 export class User extends Entity {
   constructor(data?: Partial<User>) {
     super(data);

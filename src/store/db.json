@@ -1,15 +1,11 @@
 {
   "ids": {
-    "User": 10
+    "Users": 3
   },
   "models": {
-    "User": {
-      "1": "{\"username\":\"johndoe589\",\"firstName\":\"Julie\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71004242424\",\"id\":1}",
-      "3": "{\"username\":\"johndoe580\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":3}",
-      "6": "{\"username\":\"johndoe5891\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":6}",
-      "7": "{\"username\":\"johndoe59\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":7}",
-      "8": "{\"username\":\"johndoe12\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":8}",
-      "9": "{\"username\":\"johndoe1\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":9}"
+    "Users": {
+      "1": "{\"username\":\"joh1ndoe58911\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":1}",
+      "2": "{\"username\":\"joh1n1doe58911\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":2}"
     }
   }
 }
