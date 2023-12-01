@@ -5,7 +5,7 @@
   "models": {
     "Users": {
       "1": "{\"username\":\"joh1ndoe58911\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":1}",
-      "2": "{\"username\":\"joh1n1doe58911\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"bestjohn@doe.com\",\"phone\":\"+71002003040\",\"id\":2}"
+      "2": "{\"username\":\"marsik\",\"email\":\"kot@kot.kot\",\"id\":2}"
     }
   }
 }

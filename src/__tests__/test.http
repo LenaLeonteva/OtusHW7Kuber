@@ -17,7 +17,8 @@ Content-Type: application/json
 GET http://127.0.0.1:3000/user/10
 
 ###
-GET http://127.0.0.1:3000/user/5
+GET http://127.0.0.1:3000/user/2
+X-UserId: 2
 
 ###
 PUT http://127.0.0.1:3000/user/100
@@ -27,6 +28,25 @@ PUT http://127.0.0.1:3000/user/100
   "firstName": "John",
   "lastName": "Doe",
   "email": "bestjohn@doe.com",
+  "phone": "+71002003040"
+}
+
+###
+PUT http://127.0.0.1:3000/user/2
+
+{
+  "firstName": "Tom",
+  "lastName": "Cat",
+  "phone": "+71002003040"
+}
+
+###
+PUT http://127.0.0.1:3000/user/2
+X-UserId: 2
+
+{
+  "firstName": "Tom",
+  "lastName": "Cat",
   "phone": "+71002003040"
 }
 

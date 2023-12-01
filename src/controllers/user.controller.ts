@@ -1,6 +1,6 @@
 import {inject} from '@loopback/core';
 import {repository} from '@loopback/repository';
-import {Response, RestBindings, api, operation, param, requestBody} from '@loopback/rest';
+import {Request, Response, RestBindings, api, operation, param, requestBody} from '@loopback/rest';
 import {User} from '../models/user.model';
 import {UserRepository} from '../repositories';
 
@@ -79,7 +79,8 @@ import {UserRepository} from '../repositories';
 export class UserController {
   constructor(
     @repository(UserRepository) private userRepo: UserRepository,
-    @inject(RestBindings.Http.RESPONSE) private response: Response
+    @inject(RestBindings.Http.RESPONSE) private response: Response,
+    @inject(RestBindings.Http.REQUEST) private request: Request
   ) { }
   /**
    * This can only be done by the logged in user.
@@ -223,7 +224,22 @@ user
       type: 'integer',
       format: 'int64',
     },
-  }) userId: number): Promise<User> {
+  }) userId: number): Promise<User | any> {
+    let id = this.request.get('X-UserId');
+    if (!id) return this.response.status(401).send(
+      {
+        statusCode: 401,
+        code: "error",
+        message: "Please go to login and provide Login/Password",
+
+      });
+    if (+id != userId) return this.response.status(403).send(
+      {
+        statusCode: 403,
+        code: "error",
+        message: "Forbidden",
+
+      });
     const user = await this.userRepo.findById(userId);
     return user
   }
@@ -276,6 +292,21 @@ user
       format: 'int64',
     },
   }) userId: number) {
+    let id = this.request.get('X-UserId');
+    if (!id) return this.response.status(401).send(
+      {
+        statusCode: 401,
+        code: "error",
+        message: "Please go to login and provide Login/Password",
+
+      });
+    if (+id != userId) return this.response.status(403).send(
+      {
+        statusCode: 403,
+        code: "error",
+        message: "Forbidden",
+
+      });
     const user = await this.userRepo.findById(userId)
     await this.userRepo.delete(user);
     return this.response.status(200).send();
@@ -369,9 +400,87 @@ user
       },
     },
   }) newData: User) {
+    let id = this.request.get('X-UserId');
+    if (!id) return this.response.status(401).send(
+      {
+        statusCode: 401,
+        code: "error",
+        message: "Please go to login and provide Login/Password",
 
+      });
+    if (+id != userId) return this.response.status(403).send(
+      {
+        statusCode: 403,
+        code: "error",
+        message: "Forbidden",
+
+      });
     await this.userRepo.updateById(userId, newData);
     return this.response.status(200).send();
   }
+
+  /**
+    * Update user with User ID supplied
+    *
+    * @param userId ID of user
+    * @param _requestBody
+    */
+  @operation('put', '/user/me', {
+    tags: [
+      'user',
+    ],
+    description: 'Update user with User ID supplied',
+    operationId: 'updateUser',
+    responses: {
+      '200': {
+        description: 'user updated',
+      },
+      '404': {
+        description: 'unexpected error',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/Error',
+            },
+          },
+        },
+      },
+    },
+    parameters: [
+      {
+        name: 'userId',
+        in: 'path',
+        description: 'ID of user',
+        required: true,
+        schema: {
+          type: 'integer',
+          format: 'int64',
+        },
+      },
+    ],
+  })
+  async updateMe(@requestBody({
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/Users',
+        },
+      },
+    },
+  }) newData: User) {
+
+    let id = this.request.get('X-UserId');
+    if (!id) return this.response.status(403).send(
+      {
+        statusCode: 403,
+        code: "error",
+        message: "Please go to login and provide Login/Password",
+
+      });
+    await this.userRepo.updateById(+id, newData);
+    return this.response.status(200).send();
+  }
+
+
 }
 
