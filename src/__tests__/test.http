@@ -6,7 +6,7 @@ POST http://127.0.0.1:3000/user
 Content-Type: application/json
 
 {
-  "username": "joh1n1doe58911",
+  "username": "john1doe",
   "firstName": "John",
   "lastName": "Doe",
   "email": "bestjohn@doe.com",
@@ -33,6 +33,7 @@ PUT http://127.0.0.1:3000/user/100
 
 ###
 PUT http://127.0.0.1:3000/user/2
+Content-Type: application/json
 
 {
   "firstName": "Tom",
@@ -42,10 +43,22 @@ PUT http://127.0.0.1:3000/user/2
 
 ###
 PUT http://127.0.0.1:3000/user/2
+Content-Type: application/json
 X-UserId: 2
 
 {
   "firstName": "Tom",
+  "lastName": "Cat",
+  "phone": "+71002003040"
+}
+
+###
+PUT http://127.0.0.1:3000/user/me
+Content-Type: application/json
+X-UserId: 1
+
+{
+  "firstName": "Alice",
   "lastName": "Cat",
   "phone": "+71002003040"
 }

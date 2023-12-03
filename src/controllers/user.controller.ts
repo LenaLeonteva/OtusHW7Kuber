@@ -154,15 +154,8 @@ export class UserController {
     };
 
     const sameName = await this.userRepo.findOne(filter)
-    if (sameName) {
-      return this.response.status(400).send(
-        {
-          statusCode: 400,
-          code: "error",
-          message: 'Это имя пользователя уже занято!',
+    if (sameName) return this.response.status(400).send(this.errorRes(400, 'Это имя пользователя уже занято!'))
 
-        })
-    }
     const newUser = await this.userRepo.create(user);
     console.log('User ' + user.username + ' created. ID: ' + newUser.id);
     return this.response.status(200).send();
@@ -226,20 +219,8 @@ user
     },
   }) userId: number): Promise<User | any> {
     let id = this.request.get('X-UserId');
-    if (!id) return this.response.status(401).send(
-      {
-        statusCode: 401,
-        code: "error",
-        message: "Please go to login and provide Login/Password",
-
-      });
-    if (+id != userId) return this.response.status(403).send(
-      {
-        statusCode: 403,
-        code: "error",
-        message: "Forbidden",
-
-      });
+    if (!id) return this.response.status(401).send(this.errorRes(401, "Please go to login and provide Login/Password"));
+    if (+id != userId) return this.response.status(403).send(this.errorRes(403, "Forbidden"));
     const user = await this.userRepo.findById(userId);
     return user
   }
@@ -293,20 +274,8 @@ user
     },
   }) userId: number) {
     let id = this.request.get('X-UserId');
-    if (!id) return this.response.status(401).send(
-      {
-        statusCode: 401,
-        code: "error",
-        message: "Please go to login and provide Login/Password",
-
-      });
-    if (+id != userId) return this.response.status(403).send(
-      {
-        statusCode: 403,
-        code: "error",
-        message: "Forbidden",
-
-      });
+    if (!id) return this.response.status(401).send(this.errorRes(401, "Please go to login and provide Login/Password"));
+    if (+id != userId) return this.response.status(403).send(this.errorRes(403, "Forbidden"));
     const user = await this.userRepo.findById(userId)
     await this.userRepo.delete(user);
     return this.response.status(200).send();
@@ -386,36 +355,28 @@ user
         schema: {
           $ref: '#/components/schemas/Users',
         },
-        examples: {
-          'sample-user': {
-            summary: 'Example',
-            value: {
-              firstName: 'Julie',
-              lastName: 'Doe',
-              email: 'bestjohn@doe.com',
-              phone: '+71004242424',
-            },
-          },
-        },
+        // examples: {
+        //   'sample-user': {
+        //     summary: 'Example',
+        //     value: {
+        //       username: 'johndoe589',
+        //       firstName: 'John',
+        //       lastName: 'Doe',
+        //       email: 'bestjohn@doe.com',
+        //       phone: '+71002003040',
+        //     },
+        //   },
+        // },
       },
     },
+    description: 'Created user object',
+    required: true,
   }) newData: User) {
     let id = this.request.get('X-UserId');
-    if (!id) return this.response.status(401).send(
-      {
-        statusCode: 401,
-        code: "error",
-        message: "Please go to login and provide Login/Password",
-
-      });
-    if (+id != userId) return this.response.status(403).send(
-      {
-        statusCode: 403,
-        code: "error",
-        message: "Forbidden",
-
-      });
+    if (!id) return this.response.status(401).send(this.errorRes(401, "Please go to login and provide Login/Password"));
+    if (+id != userId) return this.response.status(403).send(this.errorRes(403, "Forbidden"));
     await this.userRepo.updateById(userId, newData);
+    console.log(newData)
     return this.response.status(200).send();
   }
 
@@ -431,6 +392,29 @@ user
     ],
     description: 'Update user with User ID supplied',
     operationId: 'updateUser',
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/Users',
+          },
+          examples: {
+            'sample-user': {
+              summary: 'Example',
+              value: {
+                username: 'johndoe589',
+                firstName: 'John',
+                lastName: 'Doe',
+                email: 'bestjohn@doe.com',
+                phone: '+71002003040',
+              },
+            },
+          },
+        },
+      },
+      description: 'Created user object',
+      required: true,
+    },
     responses: {
       '200': {
         description: 'user updated',
@@ -445,19 +429,7 @@ user
           },
         },
       },
-    },
-    parameters: [
-      {
-        name: 'userId',
-        in: 'path',
-        description: 'ID of user',
-        required: true,
-        schema: {
-          type: 'integer',
-          format: 'int64',
-        },
-      },
-    ],
+    }
   })
   async updateMe(@requestBody({
     content: {
@@ -465,22 +437,37 @@ user
         schema: {
           $ref: '#/components/schemas/Users',
         },
+        examples: {
+          'sample-user': {
+            summary: 'Example',
+            value: {
+              username: 'johndoe589',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'bestjohn@doe.com',
+              phone: '+71002003040',
+            },
+          },
+        },
       },
     },
+    description: 'Created user object',
+    required: true,
   }) newData: User) {
-
+    console.log(newData)
     let id = this.request.get('X-UserId');
-    if (!id) return this.response.status(403).send(
-      {
-        statusCode: 403,
-        code: "error",
-        message: "Please go to login and provide Login/Password",
-
-      });
+    if (!id) return this.response.status(403).send(this.errorRes(403, "Please go to login and provide Login/Password"));
     await this.userRepo.updateById(+id, newData);
+
     return this.response.status(200).send();
   }
 
-
+  errorRes(code: number, mes: string): any {
+    return {
+      statusCode: code,
+      code: "error",
+      message: mes
+    }
+  }
 }
 
