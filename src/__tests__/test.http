@@ -1,27 +1,30 @@
-###
-GET http://127.0.0.1:3000/ping
+@host=http://arch.homework
 
 ###
-POST http://127.0.0.1:3000/user
+GET {{host}}/ping
+
+###
+POST {{host}}/user
 Content-Type: application/json
 
 {
-  "username": "john1doe",
-  "firstName": "John",
+  "username": "john1doe2",
+  "firstName": "John2",
   "lastName": "Doe",
-  "email": "bestjohn@doe.com",
+  "email": "bestjohn2@doe.com",
   "phone": "+71002003040"
 }
 
-###
-GET http://127.0.0.1:3000/user/10
+###  
+GET {{host}}/user/6
+Set-Cookie: session_id=a72c42eb-51ee-40b1-99b8-1826affaccf6; Path=/
 
-###
-GET http://127.0.0.1:3000/user/2
+### 
+GET {{host}}/user/2
 X-UserId: 2
 
 ###
-PUT http://127.0.0.1:3000/user/100
+PUT {{host}}/user/100
 
 {
   "username": "j5891",
@@ -32,7 +35,7 @@ PUT http://127.0.0.1:3000/user/100
 }
 
 ###
-PUT http://127.0.0.1:3000/user/2
+PUT {{host}}/user/2
 Content-Type: application/json
 
 {
@@ -42,7 +45,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://127.0.0.1:3000/user/2
+PUT {{host}}/user/2
 Content-Type: application/json
 X-UserId: 2
 
@@ -53,7 +56,7 @@ X-UserId: 2
 }
 
 ###
-PUT http://127.0.0.1:3000/user/me
+PUT {{host}}/user/me
 Content-Type: application/json
 X-UserId: 1
 
@@ -64,13 +67,13 @@ X-UserId: 1
 }
 
 ###
-DELETE http://127.0.0.1:3000/user/5
+DELETE {{host}}/user/5
 
 ###
-GET http://172.26.239.206:80/ping
+GET {{host}}/ping
 
 ###
-POST http://172.26.239.206:80/user
+POST {{host}}/user
 Content-Type: application/json
 
 {
@@ -82,7 +85,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://10.106.20.255:80/user
+POST {{host}}/user
 Content-Type: application/json
 
 {

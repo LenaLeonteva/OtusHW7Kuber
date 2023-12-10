@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: users-ingress
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "http://auth-service.default.svc.cluster.local:80/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "http://auth-service.default.svc.cluster.local:80/signin"
+    nginx.ingress.kubernetes.io/auth-url: "http://arch.homework/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "http://arch.homework/sigin"
     nginx.ingress.kubernetes.io/auth-response-headers: "X-User,X-Email,X-UserId"
 spec:
   ingressClassName: nginx
